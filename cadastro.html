@@ -1,11 +1,65 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Loja WA</title>
-  </head>
-  <body>
-    <!-- cadastro -->
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+</head>
+<body>
+    <div id="app-tarefas">
+        <h3>Minhas Tarefas</h3>
+
+        <!-- Campo de digitação e botão de ação -->
+        <input type="text" id="input-nova-tarefa" placeholder="Digite uma tarefa...">
+        <button id="btn-adicionar">Adicionar Tarefa</button>
+        <button id="btn-remover">Remover Tarefa</button>
+
+        <!-- Lista onde as tarefas vão aparecer -->
+        <ul id="lista-tarefas">
+            <li>Revisar código da aula passada</li>
+        </ul>
+    </div>
+
+    <script>
+        // Selecionando os elementos do DOM
+        const inputNovaTarefa = document.getElementById("input-nova-tarefa");
+        const btnAdicionar = document.getElementById("btn-adicionar");
+        const btnRemover = document.getElementById("btn-remover");
+        const listaTarefas = document.getElementById("lista-tarefas");
+
+        // Evento para adicionar uma nova tarefa
+        btnAdicionar.addEventListener("click", function () {
+            const textoTarefa = inputNovaTarefa.value;
+
+            // Não permite adicionar tarefa vazia
+            if (textoTarefa.trim() === "") {
+                return;
+            }
+
+            // Cria um novo elemento <li>
+            const novaTarefa = document.createElement("li");
+
+            // Coloca o texto capturado dentro do <li>
+            novaTarefa.innerText = textoTarefa;
+
+            // Adiciona a tarefa na lista
+            listaTarefas.appendChild(novaTarefa);
+
+            // Limpa o input
+            inputNovaTarefa.value = "";
+        });
+
+        // Evento para remover a última tarefa
+        btnRemover.addEventListener("click", function () {
+            const ultimaTarefa = listaTarefas.lastElementChild;
+
+            // Remove a última tarefa, caso exista
+            if (ultimaTarefa) {
+                listaTarefas.removeChild(ultimaTarefa);
+            }
+        });
+    </script>
+</body>
 </html>
+```
